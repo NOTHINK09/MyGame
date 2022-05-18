@@ -1,0 +1,118 @@
+#i have an itch.io page too! https://nothink09.itch.io/
+
+import turtle
+import time
+import random
+
+wn = turtle.Screen()
+wn.title("BlockAndRun")
+wn.setup(700, 700)
+wn.bgcolor("black")
+
+wall = turtle.Turtle()
+wall.speed(0)
+wall.penup()
+wall.shape("square")
+wall.color("green")
+wall.setpos(100, 100)
+
+player = turtle.Turtle()
+player.speed(0)
+player.penup()
+player.color("blue")
+player.setpos(-10, -200)
+player.direction = "stop"
+
+playerspeed = 20
+
+#Choose a number of enemies
+number_of_enemies = 5
+#Create an empty list of enemies
+enemies = []
+
+#Add enemies to the list
+for i in range(number_of_enemies):
+	#Create the enemy
+	enemies.append(turtle.Turtle())
+
+for enemy in enemies:
+	enemy.color("red")
+	enemy.penup()
+	enemy.speed(0)
+	x = random.randint(-200, 200)
+	y = random.randint(100, 250)
+	enemy.setposition(x, y)
+
+enemyspeed = 2
+
+
+# Functions
+def go_up():
+    player.setheading(90)
+    if player.direction != "down":
+        player.direction = "up"
+
+def go_down():
+    player.setheading(-90)
+    if player.direction != "up":
+        player.direction = "down"
+
+def go_left():
+    player.setheading(180)
+    if player.direction != "right":
+        player.direction = "left"
+
+def go_right():
+    player.setheading(360)
+    if player.direction != "left":
+        player.direction = "right"
+
+def move():
+    if player.direction == "up":
+        y = player.ycor()
+        player.sety(y + 20)
+
+    if player.direction == "down":
+        y = player.ycor()
+        player.sety(y - 20)
+
+    if player.direction == "left":
+        x = player.xcor()
+        player.setx(x - 20)
+
+    if player.direction == "right":
+        x = player.xcor()
+        player.setx(x + 20)
+
+def wallthing():
+    wall.goto(player.xcor(), player.ycor())
+    
+
+wn.listen()
+turtle.onkey(wallthing, "space")
+turtle.onkey(go_up, "w")
+turtle.onkey(go_down, "s")
+turtle.onkey(go_left, "a")
+turtle.onkey(go_right, "d")
+
+while True:
+    wn.update()
+
+    move()
+
+    for enemy in enemies:
+        enemy.setheading(enemy.towards(player))
+        enemy.forward(10)
+
+    for enemy in enemies:
+        if player.distance(enemy) < 20:
+            f = random.randint(-200, 200)
+            fa = random.randint(-200, 200)
+            enemy.goto(f, fa)
+
+    for enemy in enemies:
+        if wall.distance(enemy) < 20:
+            wall.goto(100000, 10000)
+            x = random.randint(-200, 200)
+            y = random.randint(-200, 200)
+            enemy.goto(x, y)

@@ -1,0 +1,214 @@
+
+import turtle
+import random
+import time
+
+turtle.register_shape("rock.gif")
+turtle.register_shape("food.gif")
+
+wn = turtle.Screen()
+wn.setup(800, 700)
+wn.bgcolor("black")
+wn.title("idkyet")
+
+pen = turtle.Turtle()
+pen.hideturtle()
+pen.penup()
+pen.speed(0)
+pen.color("white")
+
+player = turtle.Turtle()
+player.speed(0)
+player.color("white")
+player.penup()
+player.direction = "stop"
+
+rock = turtle.Turtle()
+rock.speed(0)
+rock.color("gray")
+rock.shape("rock.gif")
+rock.penup()
+x = random.randint(-300, 300)
+y = random.randint(-300, 300)
+rock.goto(x, y)
+
+rock2 = turtle.Turtle()
+rock2.speed(0)
+rock2.color("gray")
+rock2.shape("rock.gif")
+rock2.penup()
+x = random.randint(-300, 300)
+y = random.randint(-300, 300)
+rock2.goto(x, y)
+
+rock3 = turtle.Turtle()
+rock3.speed(0)
+rock3.color("gray")
+rock3.shape("rock.gif")
+rock3.penup()
+x = random.randint(-300, 300)
+y = random.randint(-300, 300)
+rock3.goto(x, y)
+
+rock4 = turtle.Turtle()
+rock4.speed(0)
+rock4.color("gray")
+rock4.shape("rock.gif")
+rock4.penup()
+x = random.randint(-300, 300)
+y = random.randint(-300, 300)
+rock4.goto(x, y)
+
+
+rock5 = turtle.Turtle()
+rock5.speed(0)
+rock5.color("gray")
+rock5.shape("rock.gif")
+rock5.penup()
+x = random.randint(-300, 300)
+y = random.randint(-300, 300)
+rock5.goto(x, y)
+
+rock6 = turtle.Turtle()
+rock6.speed(0)
+rock6.color("gray")
+rock6.shape("rock.gif")
+rock6.penup()
+x = random.randint(-300, 300)
+y = random.randint(-300, 300)
+rock6.goto(x, y)
+
+rock7 = turtle.Turtle()
+rock7.speed(0)
+rock7.color("gray")
+rock7.shape("rock.gif")
+rock7.penup()
+x = random.randint(-300, 300)
+y = random.randint(-300, 300)
+rock7.goto(x, y)
+
+rock8 = turtle.Turtle()
+rock8.speed(0)
+rock8.color("gray")
+rock8.shape("rock.gif")
+rock8.penup()
+x = random.randint(-300, 300)
+y = random.randint(-300, 300)
+rock8.goto(x, y)
+
+food = turtle.Turtle()
+food.speed(0)
+food.color("red")
+food.shape("food.gif")
+food.penup()
+x = random.randint(-300, 300)
+y = random.randint(-300, 300)
+food.goto(x, y)
+
+food2 = turtle.Turtle()
+food2.speed(0)
+food2.color("red")
+food2.shape("food.gif")
+food2.penup()
+x = random.randint(-300, 300)
+y = random.randint(-300, 300)
+food2.goto(x, y)
+
+def go_up():
+    player.setheading(90)
+    if player.direction != "down":
+        player.direction = "up"
+
+def go_down():
+    player.setheading(-90)
+    if player.direction != "up":
+        player.direction = "down"
+
+def go_left():
+    player.setheading(180)
+    if player.direction != "right":
+        player.direction = "left"
+
+def go_right():
+    player.setheading(360)
+    if player.direction != "left":
+        player.direction = "right"
+
+def move():
+    if player.direction == "up":
+        y = player.ycor()
+        player.sety(y + 5)
+
+    if player.direction == "down":
+        y = player.ycor()
+        player.sety(y - 5)
+
+    if player.direction == "left":
+        x = player.xcor()
+        player.setx(x - 5)
+
+    if player.direction == "right":
+        x = player.xcor()
+        player.setx(x + 5)
+
+wn.listen()
+turtle.onkey(go_up, "w")
+turtle.onkey(go_down, "s")
+turtle.onkey(go_left, "a")
+turtle.onkey(go_right, "d")
+
+while True:
+    if player.distance(rock) < 15:
+        pen.write("RIP lmao")
+        time.sleep(1)
+        break
+
+    if player.distance(rock2) < 15:
+        pen.write("RIP lmao")
+        time.sleep(1)
+        break
+
+    if player.distance(rock3) < 15:
+        pen.write("RIP lmao")
+        time.sleep(1)
+        break
+
+    if player.distance(rock4) < 15:
+        pen.write("RIP lmao")
+        time.sleep(1)
+        break
+
+    if player.distance(rock5) < 15:
+        pen.write("RIP lmao")
+        time.sleep(1)
+        break
+
+    if player.distance(rock6) < 15:
+        pen.write("RIP lmao")
+        time.sleep(1)
+        break
+
+    if player.distance(rock7) < 15:
+        pen.write("RIP lmao")
+        time.sleep(1)
+        break
+
+    if player.distance(rock8) < 15:
+        pen.write("RIP lmao")
+        time.sleep(1)
+        break
+
+    if player.distance(food) < 20:
+        x = random.randint(-300, 300)
+        y = random.randint(-300, 300)
+        food.goto(x, y)
+
+    if player.distance(food2) < 20:
+        x = random.randint(-300, 300)
+        y = random.randint(-300, 300)
+        food2.goto(x, y)
+        
+
+    wn.update()
+
+    move()
